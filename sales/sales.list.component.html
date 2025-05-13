@@ -1,0 +1,67 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, intial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="sales-list.component.css">
+        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="img\warehouse-management-system.png">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+        <title>Inventory Management System</title>
+    </head>
+<body>
+<div class="sales-container">
+  <h2>Sales List</h2>
+  
+  <div class="filters">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      (input)="applyFilters()" 
+      placeholder="Search sales..."
+    >
+    
+    <select [(ngModel)]="statusFilter" (change)="applyFilters()">
+      <option value="all">All Statuses</option>
+      <option value="completed">Completed</option>
+      <option value="pending">Pending</option>
+      <option value="cancelled">Cancelled</option>
+    </select>
+  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Customer</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of filteredSales">
+        <td>{{ sale.id }}</td>
+        <td>{{ sale.productName }}</td>
+        <td>{{ sale.customerName }}</td>
+        <td>{{ sale.amount | currency }}</td>
+        <td>{{ sale.date | date }}</td>
+        <td>
+          <span [class]="'status-' + sale.status">{{ sale.status }}</span>
+        </td>
+        <td>
+          <button (click)="deleteSale(sale.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div *ngIf="filteredSales.length === 0" class="no-results">
+    No sales found matching your criteria.
+  </div>
+</div>
+<script src="sales.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management System</title>
+    <link rel="stylesheet" href="sales.css">
+     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="img\warehouse-management-system.png">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-cash-register"></i>
+                <h1>SalesPro</h1>
+            </div>
+            <nav class="nav">
+                <a href="sales-form.component.html" class="active"><i class="fas fa-plus-circle"></i> New Sale</a>
+                <a href="sales.list.component.html"><i class="fas fa-history"></i> Sales History</a>
+                <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+            <div class="user">
+                <span>John Doe</span>
+                <div class="avatar">JD</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- New Sale Section -->
+            <section class="sale-section">
+                <h2><i class="fas fa-cart-plus"></i> New Sale</h2>
+                
+                <!-- Customer Info -->
+                <div class="form-group">
+                    <label for="customer"><i class="fas fa-user"></i> Customer</label>
+                    <div class="input-with-button">
+                        <input type="text" id="customer" placeholder="Walk-in customer">
+                        <button class="btn-small"><i class="fas fa-user-plus"></i> New</button>
+                    </div>
+                </div>
+
+                <!-- Product Search -->
+                <div class="form-group">
+                    <label for="product-search"><i class="fas fa-search"></i> Add Products</label>
+                    <div class="search-box">
+                        <input type="text" id="product-search" placeholder="Scan barcode or search products...">
+                        <button class="btn-icon"><i class="fas fa-barcode"></i></button>
+                    </div>
+                </div>
+
+                <!-- Sale Items Table -->
+                <div class="sale-items">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Premium Coffee 500g</td>
+                                <td>$12.99</td>
+                                <td><input type="number" value="2" min="1"></td>
+                                <td>$25.98</td>
+                                <td><button class="btn-icon danger"><i class="fas fa-trash"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>Organic Tea 100g</td>
+                                <td>$8.50</td>
+                                <td><input type="number" value="1" min="1"></td>
+                                <td>$8.50</td>
+                                <td><button class="btn-icon danger"><i class="fas fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <div class="totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span>$34.48</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax (10%):</span>
+                            <span>$3.45</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total:</span>
+                            <span>$37.93</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                        <div class="methods">
+                            <label class="method-option">
+                                <input type="radio" name="payment" checked>
+                                <div class="method-card">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>Cash</span>
+                                </div>
+                            </label>
+                            <label class="method-option">
+                                <input type="radio" name="payment">
+                                <div class="method-card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Card</span>
+                                </div>
+                            </label>
+                            <label class="method-option">
+                                <input type="radio" name="payment">
+                                <div class="method-card">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Mobile Pay</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="payment-actions">
+                        <button class="btn btn-cancel"><i class="fas fa-times"></i> Cancel</button>
+                        <button class="btn btn-primary"><i class="fas fa-check"></i> Complete Sale</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Sales Sidebar -->
+            <aside class="sidebar">
+                <h2><i class="fas fa-clock"></i> Recent Sales</h2>
+                <div class="recent-sales">
+                    <div class="sale-card">
+                        <div class="sale-header">
+                            <span class="sale-id">#S-1001</span>
+                            <span class="sale-time">2:45 PM</span>
+                        </div>
+                        <div class="sale-details">
+                            <span>3 items</span>
+                            <span class="sale-total">$42.50</span>
+                        </div>
+                    </div>
+                    <div class="sale-card">
+                        <div class="sale-header">
+                            <span class="sale-id">#S-1002</span>
+                            <span class="sale-time">1:30 PM</span>
+                        </div>
+                        <div class="sale-details">
+                            <span>2 items</span>
+                            <span class="sale-total">$18.75</span>
+                        </div>
+                    </div>
+                    <div class="sale-card">
+                        <div class="sale-header">
+                            <span class="sale-id">#S-1003</span>
+                            <span class="sale-time">12:15 PM</span>
+                        </div>
+                        <div class="sale-details">
+                            <span>5 items</span>
+                            <span class="sale-total">$67.20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3><i class="fas fa-chart-pie"></i> Today's Stats</h3>
+                    <div class="stat-row">
+                        <span>Total Sales:</span>
+                        <span>$128.45</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Transactions:</span>
+                        <span>8</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Avg. Sale:</span>
+                        <span>$16.06</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="sales.js"></script>
+</body>
+</html>

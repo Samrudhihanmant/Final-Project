@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    list-style: none;
+    font-family: "popins", sans-serif;
+}
+body{
+    background-color: #A8D0E6;
+    color: gray;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    animation: animateBg 50s linear infinite;
+}
+.ocean { 
+    height: 5%;
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background: #015871;
+  }
+  .wave {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+    position: absolute;
+    top: -198px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+}
+.wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+}
+@keyframes wave {
+    0% {
+      margin-left: 0;
+    }
+    100% {
+      margin-left: -1600px;
+    }
+  }
+  
+  @keyframes swell {
+    0%, 100% {
+      transform: translate3d(0,-25px,0);
+    }
+    50% {
+      transform: translate3d(0,5px,0);
+    }
+}
+.container {
+	width: 100%;
+	margin: 0 auto;
+}
+header {
+    background: whitesmoke;
+    width: 100%;
+    height: 80px;
+    box-shadow: 1px 2px 10px #000;
+ 
+}
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+ header:hover{
+    background-color: yellow;
+ }
+ .logo {
+    float: left;
+    padding: 10px 0;
+ 
+  }
+ nav {
+    float: right;
+  }
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav li {
+    display: inline-block;
+    margin-left: 100px;
+    padding-top: 30px;
+  
+    position: relative;
+}
+nav a {
+    color: red;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+nav a:hover {
+    color: #000;
+}
+nav a::before {
+    content: '';
+    display: block;
+    height: 10px;
+    background-color: blueviolet;
+    position: absolute;
+    top: 0;
+    width: 0%;
+    transition: all ease-in-out 250ms;
+}
+nav a:hover::before {
+    width: 100%;
+  }
+  

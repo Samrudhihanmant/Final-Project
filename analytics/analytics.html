@@ -1,0 +1,29 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, intial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="img\warehouse-management-system.png">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+        <title>Inventory Management System</title>
+    </head>
+    <body>
+    <!-- dashboard.component.html -->
+    <div class="chart-container">
+        <canvas baseChart
+          [data]="salesChartData"
+          [type]="'bar'">
+        </canvas>
+    </div>
+    <mat-card>
+       <mat-card-title>Low Stock Alert</mat-card-title>
+       <mat-list>
+           <mat-list-item *ngFor="let p of lowStockProducts$ | async">
+              {{p.name}} ({{p.stock}} left)
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="product.css" type="text/css">
+  <title>Inventory Management System</title>
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon" href="img\warehouse-management-system.png">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+<style>
+  #productform {
+  min-width: 600px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+mat-dialog-content {
+  padding: 16px 24px;
+  overflow: visible;
+}
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  mat-form-field {
+    flex: 1;
+  }
+}
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+.image-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.upload-button {
+  margin-bottom: 16px;
+}
+
+.image-preview {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.form-row{
+   margin-bottom: 15px;
+}
+.form-container {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #45a049;
+}
+</style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add New Product</h2>
+     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <mat-dialog-content>
+           <div class="form-row">
+            <mat-form-field appearance="outline">
+               <mat-label>Product Name</mat-label>
+               <input matInput formControlName="name" required>
+               <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+                </mat-error>
+                <mat-error *ngIf="productForm.get('name')?.hasError('minlength')">
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <mat-label>SKU</mat-label>
+              <input matInput formControlName="sku" required>
+              <mat-error *ngIf="productForm.get('sku')?.hasError('required')">
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+         <input 
+          matInput 
+          type="category" 
+          formControlName="category" 
+          min="0" 
+          step="1" 
+          required
+        >
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category">
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="productForm.get('category')?.hasError('required')">
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input 
+          matInput 
+          type="number" 
+          formControlName="price" 
+          min="0" 
+          step="0.01" 
+          required
+        >
+        <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+        </mat-error>
+        <mat-error *ngIf="productForm.get('price')?.hasError('min')">
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Stock</mat-label>
+        <input 
+          matInput 
+          type="number" 
+          formControlName="stock" 
+          min="0" 
+          required
+        >
+        <mat-error *ngIf="productForm.get('stock')?.hasError('required')">
+        </mat-error>
+        <mat-error *ngIf="productForm.get('stock')?.hasError('min')">
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea 
+        matInput 
+        formControlName="description" 
+        rows="3" 
+        required
+      ></textarea>
+      <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+        </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit"
+      [disabled]="productForm.invalid" onclick="submit()"
+    >Save</button>
+  </mat-dialog-actions>
+</form>
+
+  
+
+</body>
+</html>

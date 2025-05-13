@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="icon" type="image/x-icon" href="img\warehouse-management-system.png">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="search-bar">
+      <i class="material-icons">Search</i>
+      <input type="text" placeholder="Search...">
+    </div>
+    <div class="user-info">
+      <i class="material-icons">Notifications</i>
+      <div class="user-avatar">JD</div>
+    </div>
+  </header>
+  <aside>
+    <div class="logo">
+      <i class="material-icons">Dashboard</i>
+      <span>Profile</span>
+    </div>
+    <ul class="nav-menu">
+      <li class="nav-item active">
+          <i class="material-icons"></i>
+          <span>Dashboard</span>
+      </li>
+      <li class="nav-item">
+          <i class="material-icons"></i>
+          <span>Users</span>
+      </li>
+      <li class="nav-item">
+        <i class="material-icons"></i>
+        <span>Products</span>
+      </li>
+      <li class="nav-item">
+        <i class="material-icons"></i>
+        <span>Orders</span>
+      </li>
+      <li class="nav-item">
+        <i class="material-icons"></i>
+        <span>Settings</span>
+      </li>
+      <li class="nav-item">
+        <i class="material-icons"></i>
+        <span>Logout</span>
+        <button class="btn" onclick="longout()"></button>
+      </li>
+    </ul>
+  </aside>
+  <main>
+    <h1 class="dashboard-title">Dashboard Overview</h1>
+        
+        <div class="stats-container">
+            <div class="stat-card primary">
+                <i class="material-icons">Attach Money</i>
+                <div class="stat-value" id="total-revenue">$0</div>
+                <div class="stat-title">Total Revenue</div>
+            </div>
+            <div class="stat-card success">
+                <i class="material-icons">People</i>
+                <div class="stat-value" id="total-users">0</div>
+                <div class="stat-title">Total Users</div>
+            </div>
+            <div class="stat-card warning">
+              <i class="material-icons">Shopping Cart</i>
+              <div class="stat-value" id="total-products">0</div>
+              <div class="stat-title">Total Products</div>
+          </div>
+          <div class="stat-card danger">
+              <i class="material-icons">Receipt</i>
+              <div class="stat-value" id="pending-orders">0</div>
+              <div class="stat-title">Pending Orders</div>
+          </div>
+        </div>
+        <div class="charts-container">
+          <div class="chart-card">
+              <div class="chart-header">
+                  <h3 class="chart-title">Sales Overview</h3>
+                  <select id="sales-period">
+                      <option value="week">This Week</option>
+                      <option value="month">This Month</option>
+                      <option value="year">This Year</option>
+                  </select>
+              </div>
+              <div id="sales-chart" style="height: 300px;"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+                <h3 class="chart-title">Traffic Sources</h3>
+            </div>
+            <div id="traffic-chart" style="height: 300px;"></div>
+        </div>
+    </div>
+    <div class="recent-activity">
+      <h3>Recent Activity</h3>
+      <ul class="activity-list" id="activity-list">
+          <!-- Activities will be added here dynamically -->
+      </ul>
+    </div>
+    
+
+  </main>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+  
+  <!-- App scripts -->
+  <script src="login.js"></script>
+  <script src="auth.js"></script>
+  <script src="dashboard.js"></script>
+  
+  <script>
+    // Display user info
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        document.getElementById('user-info').innerHTML = `
+          <p>Email: ${user.email}</p>
+          <p>User ID: ${user.uid}</p>
+        `;
+        
+        // Optional: Fetch additional user data from Firestore
+        db.collection('users').doc(user.uid).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const userData = doc.data();
+              document.getElementById('user-info').innerHTML += `
+                <p>Username: ${userData.username || 'Not set'}</p>
+                <p>Member since: ${new Date(userData.createdAt?.toDate()).toLocaleDateString()}</p>
+              `;
+            }
+          })
+          .catch((error) => {
+            console.error("Error getting user data:", error);
+          });
+      }
+    });
+  </script>
+  <script type="module">
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyDf9xJlOkU4B0YHElSoH1xPPjrz3srxw3A",
+  
+      authDomain: "dashboard-11ef3.firebaseapp.com",
+  
+      projectId: "dashboard-11ef3",
+  
+      storageBucket: "dashboard-11ef3.firebasestorage.app",
+  
+      messagingSenderId: "363958482044",
+  
+      appId: "1:363958482044:web:1d91fdc1e8b2cef81245f9",
+  
+      measurementId: "G-C3FHTSF23R"
+  
+    };
+  
+  
+    // Initialize Firebase
+  
+    const app = initializeApp(firebaseConfig);
+  
+    const analytics = getAnalytics(app);
+  
+  </script>
+</body>
+</html>

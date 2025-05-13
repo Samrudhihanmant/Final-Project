@@ -1,0 +1,30 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, intial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="app.component.css">
+        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="img\warehouse-management-system.png">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+        <title>Inventory Management System</title>
+    </head>
+<body>
+   
+<div class="app-container">
+  <h1>{{ title }}</h1>
+  
+  <button *ngIf="!showForm" (click)="openAddForm()">Add New Sale</button>
+  
+  <app-sale-form 
+    *ngIf="showForm && currentSale" 
+    [sale]="currentSale" 
+    (save)="onSave($event)"
+    (cancel)="onCancel()"
+  ></app-sale-form>
+  
+  <app-sales-list *ngIf="!showForm"></app-sales-list>
+</div>
+<body>
+</body>
+</html>
